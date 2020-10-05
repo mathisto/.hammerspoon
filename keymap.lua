@@ -1,3 +1,39 @@
+hyper = hs.hotkey.modal.new({}, nil)
+hyper.pressed = function() hyper:enter() end
+hyper.released = function() hyper:exit() end
+hs.hotkey.bind({}, 'F19', hyper.pressed, hyper.released)
+-- Single Key Hyper Invocations
+applicationHotkeys = {
+  a = 'Alfred 4',
+  b = browser,
+  e = editor,
+  i = terminal,
+  d = database,
+  f = 'Finder',
+  m = 'Messages',
+  r = rest_client,
+  p = music,
+  s = slack,
+  c = chat,
+  w = 'Hammerspoon'
+}
+for key, app in pairs(applicationHotkeys) do
+  hyper:bind({}, key, nil, function() launch(app); hyper:exit(); end)
+end
+hyper:bind({}, "h", nil, function() spoon.WinWin:moveAndResize("halfleft") end)
+hyper:bind({}, "j", nil, function() hs.window.focusedWindow():moveToScreen(hs.window.focusedWindow():screen():next()) end)
+hyper:bind({}, "k", nil, function() hs.window.focusedWindow():maximize() end)
+hyper:bind({}, "l", nil, function() spoon.WinWin:moveAndResize("halfright") end)
+hyper:bind({}, ";", nil, function() threeMonitorLayout() end)
+
+
+-- Sequential 'leader' style invocations, e.g. Hyper-a,f for Finder
+-- a = hs.hotkey.modal.new({}, "F16")
+-- pressedA = function() a:enter() end
+-- releasedA = function() end
+-- hyper:bind({}, 'a', nil, pressedA, releasedA)
+-- a:bind({}, 'b', function() hs.application.get('Google Chrome'):allWindows()[2]:focus(); hyper:exit(); end)
+
 ----------------------- SPACE CADET ----------------------
 -- https://github.com/Hammerspoon/hammerspoon/issues/1732
 -- https://gist.github.com/casouri/06e02230dbfd6ab68fd1798ddb025148
@@ -32,42 +68,4 @@ local spaceCadetMapWithName = {
    [singleKey('k', '↑')] = function() moveAndResize('up') moveWindowMode() end,
    [singleKey('l', '→')] = function() moveAndResize('right') moveWindowMode() end
 }
-hs.hotkey.bind({'ctrl'}, 'space', nil, recursiveBind(spaceCadetMapWithName))
-
------------------------ HYPER -----------------------
-hyper = hs.hotkey.modal.new({}, nil)
-hyper.pressed = function() hyper:enter() end
-hyper.released = function() hyper:exit() end
-hs.hotkey.bind({}, 'F19', hyper.pressed, hyper.released)
--- Single Key Hyper Invocations
-applicationHotkeys = {
-  space = 'Alfred 4',
-  a = 'Activity Monitor',
-  b = browser,
-  e = editor,
-  i = terminal,
-  d = database,
-  f = 'Finder',
-  m = 'Messages',
-  r = rest_client,
-  p = music,
-  s = slack,
-  c = chat,
-  w = 'Hammerspoon'
-}
-for key, app in pairs(applicationHotkeys) do
-  hyper:bind({}, key, nil, function() launch(app); hyper:exit(); end)
-end
-hyper:bind({}, "h", nil, function() spoon.WinWin:moveAndResize("halfleft") end)
-hyper:bind({}, "j", nil, function() hs.window.focusedWindow():moveToScreen(hs.window.focusedWindow():screen():next()) end)
-hyper:bind({}, "k", nil, function() hs.window.focusedWindow():maximize() end)
-hyper:bind({}, "l", nil, function() spoon.WinWin:moveAndResize("halfright") end)
-hyper:bind({}, ";", nil, function() threeMonitorLayout() end)
-
-
--- Sequential 'leader' style invocations, e.g. Hyper-a,f for Finder
--- a = hs.hotkey.modal.new({}, "F16")
--- pressedA = function() a:enter() end
--- releasedA = function() end
--- hyper:bind({}, 'a', nil, pressedA, releasedA)
--- a:bind({}, 'b', function() hs.application.get('Google Chrome'):allWindows()[2]:focus(); hyper:exit(); end)
+hyper:bind({}, 'space', nil, recursiveBind(spaceCadetMapWithName))
