@@ -10,7 +10,7 @@ recursiveBindHelperFormat = {atScreenEdge=2,
                              textFont='FuraCode Nerd Font'}
 
 -- whether to show helper
-showBindHelper = true
+showBindHelper = false
 
 -- used by next model to close previous helper
 local previousHelperID = nil
