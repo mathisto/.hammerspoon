@@ -173,3 +173,5 @@ function singleKey(key, name)
       return {mod, key, 'no name'}
    end
 end
+
+SpaceCadetKeymap = require('space_cadet_keymap')
