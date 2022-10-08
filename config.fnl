@@ -7,3 +7,4 @@
 
 (require :cljlib)   ;; Dat sweet sweet clojure
 (require :keymaps)  ;; Spacemacs flavored menu driver 
+(require :yabai)
