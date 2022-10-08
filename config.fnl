@@ -1,3 +1,5 @@
+(require :hammerspoon)
+
 (global notify! hs.alert.show)
 (let [reload_config (hs.loadSpoon :ReloadConfiguration)]
   (reload_config:start)	;; Enable hot reloading of Hammerspoon config
