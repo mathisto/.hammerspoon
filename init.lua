@@ -1,3 +1,7 @@
+-- We use Inter Process Communication (IPC) protocols
+-- to send real time messagees to yabai, sketchybar, and mpv
+require "hs.ipc"
+
 -- We need to shunt fennel into Hammerspoon's package searchers
 -- Let's make sure out local Lua and rocks are on the path
 -- and then make some magic happen
