@@ -14,5 +14,9 @@ package.cpath = package.cpath .. ";" ..
 Fennel = require("fennel")
 table.insert(package.searchers, Fennel.searcher)
 
+-- I also like to alias a lot of tables for easier invocation
+-- Yes, im polluting the global namespace of a trivally sized config
+Spoons = hs.spoons
+
 -- Now let's get down to the good stuff. 
 require "config" -- It's all fennel from here...

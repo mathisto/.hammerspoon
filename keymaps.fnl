@@ -1,11 +1,13 @@
-(hs.loadSpoon :RecursiveBinder)
-(local rb spoon.RecursiveBinder)
-(set rb.escapeKey [{} :escape])
-(local key rb.singleKey)
-(local keymap
-       {(key :b :browser) #(hs.application.launchOrFocus :Vivaldi)
-        (key :d :Domain+) {
-          (key :g :github) #(hs.urlevent.openURL :github.com) 
-          (key :y :youtube) #(hs.urlevent.openURL :youtube.com)}
-        (key :t :terminal) #(hs.application.launchOrFocus :iTerm)})
-(hs.hotkey.bind [:cmd] :space (spoon.RecursiveBinder.recursiveBind keymap))	
+(local RecBin spoon.RecursiveBinder)
+(local open_url! hs.urlevent.openURL)
+(local launch! App.launchOrFocus)
+
+(set RecBin.escapeKey [{} :escape])
+(local key RecBin.singleKey)
+(local keymap 
+  {(key :b :browser) #(launch! :Vivaldi)
+   (key :e :editor) #(launch! :Code)
+   (key :h :editor) #(launch! :Hammerspoon)
+   (key :t :terminal) #(launch! :iTerm)})
+
+(bind! [:command] :space (RecBin.recursiveBind keymap))	

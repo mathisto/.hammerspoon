@@ -16,3 +16,5 @@ A bespoke Hammerspoon config; hand tailored for demon slaying.
 ### TODO
 - [ ] Create macro for 
   `hs.hotkey.bind(super, hs.keycodes.map["h"], function() yabai({"-m", "space", "--rotate", "270"}, function() toast("🔲🔁") end) end)  --["."]`
+
+- [ ] 
