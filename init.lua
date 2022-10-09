@@ -1,6 +1,10 @@
 -- We use Inter Process Communication (IPC) protocols
 -- to send real time messagees to yabai, sketchybar, and mpv
+-- I want this up no matter what. I place it here in honor of
+-- its import to me. Without it, my machine crumbls to dust,
+-- yabai cries, and angel loses a wing.
 require "hs.ipc"
+hs.ipc.cliInstall("/Users/mathisto/.local")
 
 -- We need to shunt fennel into Hammerspoon's package searchers
 -- Let's make sure out local Lua and rocks are on the path

@@ -1,13 +1,29 @@
-(local RecBin spoon.RecursiveBinder)
-(local open_url! hs.urlevent.openURL)
-(local launch! App.launchOrFocus)
+(local app {
+  :editor "Visual Studio Code"
+  :browser "Vivaldi"
+  :terminal "iTerm"
+  :music "Museeks"
+})
 
-(set RecBin.escapeKey [{} :escape])
-(local key RecBin.singleKey)
-(local keymap 
-  {(key :b :browser) #(launch! :Vivaldi)
-   (key :e :editor) #(launch! :Code)
-   (key :h :editor) #(launch! :Hammerspoon)
-   (key :t :terminal) #(launch! :iTerm)})
+(local yabai_path "/opt/homebrew/bin/yabai ")
+(fn yabai [message] 
+  "Sends a message to yabai window manager" 
+  (hs.execute (.. yabai_path message)))
 
-(bind! [:command] :space (RecBin.recursiveBind keymap))	
+;; Manually reload hammerspoon
+(hyper:bind [] :r #(hs.reload))	
+(hyper:bind [:cmd] :r #(hs.execute "launchctl kickstart -k \"gui/${UID}/homebrew.mxcl.yabai\""))	
+
+;; Application Invocations
+(hyper:bind {} :a #(launch! "Alfred 5"))	
+(hyper:bind {} :b #(launch! app.browser))	
+(hyper:bind {} :e #(launch! app.editor))	
+(hyper:bind {} :i #(launch! app.terminal))	
+(hyper:bind {} :n #(launch! :Logseq))	
+(hyper:bind {} :w #(launch! :Hammerspoon))	
+
+;; Focus window in cardinal direction
+(hyper:bind {} :h #(yabai "-m window --focus west"))
+; (hyper:bind {} :j #(yabai "-m window --focus south"))
+; (hyper:bind {} :k #(yabai "-m window --focus north"))
+(hyper:bind {} :l #(yabai "-m window --focus east"))
