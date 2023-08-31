@@ -1,29 +1,37 @@
-(local app {
-  :editor "Visual Studio Code"
-  :browser "Vivaldi"
-  :terminal "iTerm"
-  :music "Museeks"
-})
-
-(local yabai_path "/opt/homebrew/bin/yabai ")
-(fn yabai [message] 
-  "Sends a message to yabai window manager" 
-  (hs.execute (.. yabai_path message)))
-
-;; Manually reload hammerspoon
-(hyper:bind [] :r #(hs.reload))	
-(hyper:bind [:cmd] :r #(hs.execute "launchctl kickstart -k \"gui/${UID}/homebrew.mxcl.yabai\""))	
+(local app {:browser "Vivaldi"
+            :chat "Discord"
+            :calendar "Fantastical"
+            :email "Mail"
+            :editor "Visual Studio Code"
+            :finder "QSpace Pro"
+            :music "YouTube"
+            :notes "Logseq"
+            :terminal "iTerm"})
 
 ;; Application Invocations
-(hyper:bind {} :a #(launch! "Alfred 5"))	
-(hyper:bind {} :b #(launch! app.browser))	
-(hyper:bind {} :e #(launch! app.editor))	
-(hyper:bind {} :i #(launch! app.terminal))	
-(hyper:bind {} :n #(launch! :Logseq))	
-(hyper:bind {} :w #(launch! :Hammerspoon))	
-
-;; Focus window in cardinal direction
-(hyper:bind {} :h #(yabai "-m window --focus west"))
-; (hyper:bind {} :j #(yabai "-m window --focus south"))
-; (hyper:bind {} :k #(yabai "-m window --focus north"))
-(hyper:bind {} :l #(yabai "-m window --focus east"))
+(hyper:bind []     :a     #(launch! "Dyalog"))
+(hyper:bind [:cmd] :a     #(launch! "Activity Monitor"))
+(hyper:bind []     :b     #(launch! app.browser))
+(hyper:bind [:cmd] :b     #(launch! :Bitwarden))
+(hyper:bind []     :c     #(launch! app.calendar))
+(hyper:bind [:cmd] :c     #(launch! app.chat))
+(hyper:bind []     :d     #(launch! :Datagrip))
+(hyper:bind []     :e     #(launch! app.editor))
+(hyper:bind []     :f     #(launch! app.finder))
+(hyper:bind []     :g     #(launch! "Google Meet"))
+(hyper:bind [:cmd] :g     #(launch! :MacGPT))
+(hyper:bind []     :i     #(launch! app.terminal))
+(hyper:bind []     :j     #(launch! "IntelliJ IDEA"))
+(hyper:bind []     :m     #(launch! app.email))
+(hyper:bind [:cmd] :m     #(launch! :Messages))
+(hyper:bind []     :n     #(launch! app.notes))
+(hyper:bind []     :o     #(launch! "OBS"))
+(hyper:bind []     :p     #(launch! :Preview))
+(hyper:bind []     :r     #(launch! :Insomnia))
+(hyper:bind [:cmd] :r     #(launch! :RubyMine))
+(hyper:bind []     :s     #(launch! :Slack))
+(hyper:bind []     :v     #(launch! "Visual Studio Code"))
+(hyper:bind []     :y     #(launch! "Friendly Streaming"))
+(hyper:bind []     :z     #(launch! :zoom.us))
+(hyper:bind [:cmd] :space #(launch! :Raycast))
+(hyper:bind [:alt] :space #(launch! :Raycast))
